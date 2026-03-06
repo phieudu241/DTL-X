@@ -52,7 +52,8 @@ If you are interested in reversing or patching Android applications, then I reco
 --noc: No Compile  
 --patch <PATCHFILE>: APK PATCHER (read README_PATCH.MD for more information)
 --rmpairip: Remove Google Pairip Protection (Old Method)  
---bppairip: Simple Bypass Google Pairip Protection 2024 (credit to 0xdeadc0de)  
+--bppairip: Simple Bypass Google Pairip Protection 2024 (credit to 0xdeadc0de)
+--bppairip2: Simple Bypass Google Pairip by Smali regex (credit: https://github.com/TechnoIndian/RKPairip)  
 --rmvpndet: Remove VPN Detection (t.me/toyly_s)  
 --rmusbdebug: Remove USB Debugging  
 --rmssrestrict: Remove Screenshot Restriction  

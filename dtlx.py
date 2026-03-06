@@ -2370,6 +2370,8 @@ def main():
 				funcls.append("fixinstall")
 			elif px == "--bppairip":
 				funcls.append("bppairip")
+			elif px == "--bppairip2":
+				funcls.append("bppairip2")
 			elif px == "--il2cppdumper":
 				funcls.append("il2cppdumper")
 			elif px == "--obfuscatemethods":
