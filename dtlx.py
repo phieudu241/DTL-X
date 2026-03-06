@@ -128,7 +128,7 @@ class patcher:
 		if not self.isproject:
 			# Decompile APK file
 			print("\x1b[92m+++++ Decompile APK into Project\x1b[0m")
-			os.system(f"java -jar apkeditor.jar d -i {self.fin} -o {self.fout}")
+			os.system(f"java -jar apkeditor-1.4.7.jar d -i {self.fin} -o {self.fout}")
 			self.manifestxml = open(f"{self.fout}/AndroidManifest.xml","r").read()
 			## Fixing bug where the manifest copy content itself many times
 			#if len(self.manifestxml.split("</manifest>")) > 1:
@@ -188,10 +188,10 @@ class patcher:
 		# Compile Project
 		if self.iscompile:
 			if os.path.isdir(f"{self.fout}/resources"):
-				self.compilecmd = f"java -jar apkeditor.jar b -i {self.fout} -o {self.fout}_dtlx.apk"
+				self.compilecmd = f"java -jar apkeditor-1.4.7.jar b -i {self.fout} -o {self.fout}_dtlx.apk"
 				self.compiled = f"{self.fout}_dtlx.apk"
 			elif os.path.isdir(f"{self.fout}/res"):
-				self.compilecmd = f"java -jar apktool-v2.9.3.jar b -f --use-aapt2 -a assets/aapt2 -d {self.fout}"
+				self.compilecmd = f"java -jar apktool-v3.0.1.jar b -f --use-aapt2 -a assets/aapt2 -d {self.fout}"
 				self.compiled = f"{self.fout}/dist/{self.fout}.apk"
 			else:
 				raise FileNotFoundError(f"dtlx: '{self.fout}': Not identified as project directory because of the missing resource directory")

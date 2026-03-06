@@ -98,7 +98,7 @@ def randomid():
 exportcmd = "export PATH=$PATH:$HOME/bin"
 exportcmd2 = "export PATH=$PATH:$HOME/bin"
 def main():
-    apktoolurl = "https://raw.githubusercontent.com/Gameye98/DTL-X/master/apktool-v2.9.3.jar"
+    apktoolurl = "https://raw.githubusercontent.com/phieudu241/DTL-X/master/apktool-v3.0.1.jar"
     bindir = os.getenv("HOME")+"/bin"
     print("\x1b[1;92m[+] check and mkdir $HOME/bin... \x1b[0m", end="")
     if os.path.exists(bindir):
