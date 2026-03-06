@@ -1366,6 +1366,17 @@ class patcher:
 		if isinject:
 			print("\x1b[1;92m[+] bppairip: \x1b[1;93mpairipcoree code has been injected!\x1b[0m")
 			# remove pairip shared object library
+			# armeabi-v7a
+			# TODO: need to build libpairipcore.so for armeabi-v7a 32-bit architecture
+			for f in glob.iglob(f"{self.fout}/**/lib/armeabi-v7a/libpairipcore.so",recursive=True):
+				f = f.strip()
+				filename = f.split("/")[-1]
+				pathfile = f[0:len(f)-len(filename)]
+				shutil.copy("assets/chunk00.bin", pathfile+"libpairipcoree.so")
+				print("\x1b[1;92m[+] bppairip: \x1b[1;93mlibpairipcoree.so has been added!\x1b[0m")
+				break
+
+			# arm64-v8a
 			for f in glob.iglob(f"{self.fout}/**/lib/arm64-v8a/libpairipcore.so",recursive=True):
 				f = f.strip()
 				filename = f.split("/")[-1]
