@@ -9,3 +9,6 @@ sample
 file.txt
 .dtlx_history
 randomgen.py
+
+# IDEs
+.idea

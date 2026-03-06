@@ -168,6 +168,7 @@ class patcher:
 			elif args_iter=="patch":self.patchApp()
 			elif args_iter=="rmpairip":self.removePairip()
 			elif args_iter=="bppairip":self.bypassPairip()
+			elif args_iter=="bppairip2":self.removeSmaliByRegex(regex_for_pairip_2)
 			elif args_iter=="rmvpndet":self.removeSmaliByRegex(regex_for_vpn_detection)
 			elif args_iter=="rmusbdebug":self.removeSmaliByRegex(regex_for_usb_debugging)
 			elif args_iter=="rmssrestrict":self.removeSmaliByRegex(regex_for_screenshot_restriction_removal)
@@ -1790,6 +1791,7 @@ helpbanner = """     __ __   __
 --patch <PATCHFILE>: APK PATCHER (read README_PATCH.MD for more information)
 --rmpairip: Remove Google Pairip Protection (Old Method)
 --bppairip: Simple Bypass Google Pairip Protection 2024 (credit: 0xdeadc0de)
+--bppairip2: Simple Bypass Google Pairip by Smali regex (credit: https://github.com/TechnoIndian/RKPairip)
 --rmvpndet: Remove VPN Detection (credit: t.me/toyly_s)
 --rmusbdebug: Remove USB Debugging
 --rmssrestrict: Remove ScreenShot Restriction
@@ -1956,6 +1958,40 @@ regex_for_pairip = [
 		r'invoke-static {}, Lsec/blackhole/dtlx/Schadenfreude;->neutralize()Z'
 	]
 ]
+
+regex_for_pairip_2 = [
+	[
+		r'invoke-static \{[^\}]*\}, Lcom/pairip/SignatureCheck;->verifyIntegrity\(Landroid/content/Context;\)V',
+		r'#',
+		"VerifyIntegrity"
+	],
+	[
+		r'(\.method [^(]*verifyIntegrity\(Landroid/content/Context;\)V\s+.locals \d+)[\s\S]*?(\s+return-void\n.end method)',
+		r'\1\2',
+		"VerifyIntegrity"
+	],
+	[
+		r'(\.method [^(]*verifySignatureMatches\(Ljava/lang/String;\)Z\s+.locals \d+\s+)[\s\S]*?(\s+return ([pv]\d+)\n.end method)',
+		r'\1const/4 \3, 0x1\2',
+		"verifySignatureMatches"
+	],
+	[
+		r'(\.method [^(]*connectToLicensingService\(\)V\s+.locals \d+)[\s\S]*?(\s+return-void\n.end method)',
+		r'\1\2',
+		"connectToLicensingService"
+	],
+	[
+		r'(\.method [^(]*initializeLicenseCheck\(\)V\s+.locals \d+)[\s\S]*?(\s+return-void\n.end method)',
+		r'\1\2',
+		"initializeLicenseCheck"
+	],
+	[
+		r'(\.method [^(]*processResponse\(ILandroid/os/Bundle;\)V\s+.locals \d+)[\s\S]*?(\s+return-void\n.end method)',
+		r'\1\2',
+		"processResponse"
+	]
+]
+
 regex_for_country_registration_removal = [
 	[
         r'(getNetworkOperatorName|getSimOperatorName).+Ljava.lang.String;\n+\s+move-result-object ([vp]\d+)',
