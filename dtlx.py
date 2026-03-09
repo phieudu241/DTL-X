@@ -2303,7 +2303,7 @@ def main():
 	c = 0
 	p = sys.argv
 	p.remove(p[0])
-	if len(p) >= 2:
+	if len(p) >= 1:
 		funcls = []
 		ftarget = p[-1]
 		if os.path.exists(ftarget):
