@@ -128,7 +128,8 @@ class patcher:
 		if not self.isproject:
 			# Decompile APK file
 			print("\x1b[92m+++++ Decompile APK into Project\x1b[0m")
-			os.system(f"java -jar apkeditor-1.4.7.jar d -i {self.fin} -o {self.fout}")
+			# os.system(f"java -jar apkeditor-1.4.7.jar d -i {self.fin} -o {self.fout}")
+			os.system(f"java -jar apktool-v3.0.1.jar d {self.fin} -o {self.fout}")
 			self.manifestxml = open(f"{self.fout}/AndroidManifest.xml","r").read()
 			## Fixing bug where the manifest copy content itself many times
 			#if len(self.manifestxml.split("</manifest>")) > 1:
