@@ -1954,7 +1954,13 @@ regex_for_pairip = [
 	],
 	[
 		r'(\.method public.*onReceive\(Landroid/content/Context;Landroid/content/Intent;\)V\n    \.registers) .[\s\S]*const-string/jumbo.*\s+.*\s+.*\s+(return-void)',
-		r'\1 3\n    \2'
+		r'\1 3\n    \2',
+        "Remove VMRunner.invoke call - registers version"
+	],
+	[
+		r'(\.method public.*onReceive\(Landroid/content/Context;Landroid/content/Intent;\)V\n    \.locals) .[\s\S]*const-string/jumbo.*\s+.*\s+.*\s+(return-void)',
+		r'\1 3\n    \2',
+        "Remove VMRunner.invoke call - .locals version"
 	],
 	[
 		r'.*invoke.*pairip.*\)Ljava/lang/Object;.*',
