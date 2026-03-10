@@ -128,8 +128,13 @@ class patcher:
 		if not self.isproject:
 			# Decompile APK file
 			print("\x1b[92m+++++ Decompile APK into Project\x1b[0m")
-			# os.system(f"java -jar apkeditor-1.4.7.jar d -i {self.fin} -o {self.fout}")
-			os.system(f"java -jar apktool-v3.0.1.jar d {self.fin} -o {self.fout}")
+			# decom_ng
+			# 0 -> apktool
+			# 1 -> apkeditor
+			if "apktool" in args:
+				os.system(f"java -jar apktool-v3.0.1.jar d {self.fin} -r -o {self.fout}")
+			else:
+				os.system(f"java -jar apkeditor-1.4.7.jar d -i {self.fin} -o {self.fout}")
 			self.manifestxml = open(f"{self.fout}/AndroidManifest.xml","r").read()
 			## Fixing bug where the manifest copy content itself many times
 			#if len(self.manifestxml.split("</manifest>")) > 1:
@@ -186,6 +191,7 @@ class patcher:
 			elif args_iter=="cloneapk":self.cloneApk()
 			elif args_iter=="rmcountryreg":self.removeSmaliByRegex(regex_for_country_registration_removal)
 			elif args_iter=="t4adremover":self.removeSmaliByRegex(t4adremover_patterns)
+			elif args_iter=="apktool":pass  # handled at decompile stage
 		# Compile Project
 		if self.iscompile:
 			if os.path.isdir(f"{self.fout}/resources"):
