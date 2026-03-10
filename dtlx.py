@@ -2303,8 +2303,8 @@ def whereapkfrom():
 	return realpath
 
 def main():
-	if directrun():
-		check_update()
+	# if directrun():
+	# 	check_update()
 	print(mainbanner)
 	global isconsole
 	c = 0
